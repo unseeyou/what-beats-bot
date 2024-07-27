@@ -1,4 +1,5 @@
 import logging
+import pathlib
 import typing
 
 import aiosqlite
@@ -44,3 +45,7 @@ class Bot(commands.Bot):
     async def close_database_connection(self) -> None:
         if self.database_connection is not None:
             await self.database_connection.close()
+
+    async def load_extensions(self, path: str) -> None:
+        for file in pathlib.Path(path).glob("*.py"):
+            await self.load_extension(file.stem)

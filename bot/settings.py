@@ -20,4 +20,4 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_prefix="UNS_")
 
     discord_bot_token: str
-    database_file_path: str = "database.db"
+    database_path: str = "database.db"
