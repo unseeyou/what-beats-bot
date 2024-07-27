@@ -33,7 +33,7 @@ class Bot(commands.Bot):
         command_prefix: typing.Iterable[str],
         intents: discord.Intents,
         help_command: commands.HelpCommand | None = None,
-        tree_cls: type[commands.CommandTree] = discord.app_commands.CommandTree,
+        tree_cls: type[discord.app_commands.CommandTree] = discord.app_commands.CommandTree,
         description: str = "",
         allowed_contexts: discord.app_commands.AppCommandContext = MISSING,
         allowed_installs: discord.AppInstallationType = MISSING,
