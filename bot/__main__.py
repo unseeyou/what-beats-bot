@@ -11,7 +11,19 @@ async def main() -> None:
         command_prefix="p!",
         intents=intents,
         case_insensitive=True,
-        allowed_contexts=("guild"),
+        allowed_contexts=discord.app_commands.AppCommandContext(guild=True, dm_channel=False),
+        activity=discord.Activity(
+            type=discord.ActivityType.playing,
+            name="whatbeatsrock.com",
+            url="https://whatbeatsrock.com",
+            buttons=[
+                discord.ui.Button(
+                    label="Check out the website",
+                    url="https://whatbeatsrock.com",
+                    style=discord.ButtonStyle.url,
+                ),
+            ],
+        ),
     )
     await bot.connect_to_database()
     await bot.start(bot.settings.discord_bot_token)
