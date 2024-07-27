@@ -32,7 +32,7 @@ class Bot(commands.Bot):
         self,
         command_prefix: typing.Iterable[str],
         intents: discord.Intents,
-        help_commmand: commands.HelpCommand,
+        help_command: commands.HelpCommand,
         tree_cls: type[commands.CommandTree] = discord.app_commands.CommandTree,
         description: str = "",
         allowed_contexts: discord.app_commands.AppCommandContext = MISSING,
@@ -42,7 +42,7 @@ class Bot(commands.Bot):
         super().__init__(
             command_prefix=command_prefix,
             intents=intents,
-            help_commmand=help_commmand,
+            help_commmand=help_command,
             tree_cls=tree_cls,
             description=description,
             allowed_contexts=allowed_contexts,
