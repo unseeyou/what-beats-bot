@@ -3,7 +3,6 @@ from typing import Literal
 import g4f
 from discord import Embed, Interaction, app_commands, ui
 from discord.ext import commands
-from emoji_translate.emoji_translate import Translator
 
 
 class GameEmbed(Embed):
@@ -13,7 +12,6 @@ class GameEmbed(Embed):
         prev_item: str | None = None,
         state: Literal["ask", "lose", "explain"] = "ask",
     ) -> None:
-        self._translator = Translator()
         self._state = state
         self.item = item
         self._prev_item = prev_item
@@ -76,8 +74,9 @@ class BotCommands(commands.Cog):
 
     @app_commands.command(name="play", description="Play what beats rock game")
     async def play(self, interaction: Interaction) -> None:
+        await interaction.response.defer(thinking=True)
         game_embed = GameEmbed("rock")
-        await interaction.response.send_message(embed=game_embed, view=GameView("ask"))
+        await interaction.followup.send(embed=game_embed, view=GameView("ask"))
 
 
 async def setup(bot: commands.Bot) -> None:
