@@ -1,4 +1,5 @@
 import asyncio
+import sys
 
 import discord
 
@@ -28,3 +29,4 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("Bot Stopped")
+        sys.exit()
