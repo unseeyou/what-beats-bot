@@ -57,6 +57,10 @@ class Bot(commands.Bot):
 
         self.database_connection: aiosqlite.Connection | None = None
 
+        @self.event
+        async def setup_hook() -> None:
+            await self.tree.sync(guild=None)
+
     async def connect_to_database(self) -> None:
         await self.load_extensions("bot/cogs")
         self.database_connection = await aiosqlite.connect(self.settings.database_path)
@@ -67,4 +71,4 @@ class Bot(commands.Bot):
 
     async def load_extensions(self, path: str) -> None:
         for file in utils.search_directory(path):
-            await self.load_extension(file.stem)
+            await self.load_extension(file)

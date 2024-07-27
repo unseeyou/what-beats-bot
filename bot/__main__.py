@@ -8,6 +8,7 @@ from bot.bot import Bot
 
 async def main() -> None:
     intents = discord.Intents.default()
+    intents.message_content = True
     bot = Bot(
         command_prefix="p!",
         intents=intents,
@@ -19,9 +20,10 @@ async def main() -> None:
             url="https://whatbeatsrock.com",
         ),
     )
-    await bot.connect_to_database()
-    await bot.start(bot.settings.discord_bot_token)
-    await bot.close_database_connection()
+    async with bot:
+        await bot.connect_to_database()
+        await bot.start(bot.settings.discord_bot_token)
+        await bot.close_database_connection()
 
 
 if __name__ == "__main__":
