@@ -32,9 +32,17 @@ class GameEmbed(Embed):
         super().__init__(title=title, description=description)
 
     def _get_emoji_representation(self, item: str) -> str:
-        return g4f.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": f"what would {item} be as one emoji?"}],
+        return "".join(
+            [
+                i
+                for i in g4f.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[{"role": "user", "content": f"what would {item} be as one emoji?"}],
+                )
+                .choices[0]
+                .message.content
+                if not i.isalnum()
+            ],
         )
 
     def determine_winner(self, item1: str, item2: str) -> str:
