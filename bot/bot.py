@@ -4,6 +4,7 @@ import typing
 import aiosqlite
 import discord
 from discord.ext import commands
+from discord.utils import MISSING
 from rich.logging import RichHandler
 
 from bot import utils
@@ -27,8 +28,27 @@ def configure_logging() -> None:
 
 
 class Bot(commands.Bot):
-    def __init__(self, command_prefix: typing.Iterable[str], intents: discord.Intents, **options: typing.Any) -> None:  # noqa: ANN401
-        super().__init__(command_prefix=command_prefix, intents=intents, **options)
+    def __init__(  # noqa: PLR0913
+        self,
+        command_prefix: typing.Iterable[str],
+        intents: discord.Intents,
+        help_commmand: commands.HelpCommand,
+        tree_cls: type[commands.CommandTree] = discord.app_commands.CommandTree,
+        description: str = "",
+        allowed_contexts: discord.app_commands.AppCommandContext = MISSING,
+        allowed_installs: discord.AppInstallationType = MISSING,
+        **options: typing.Any,  # noqa: ANN401
+    ) -> None:
+        super().__init__(
+            command_prefix=command_prefix,
+            intents=intents,
+            help_commmand=help_commmand,
+            tree_cls=tree_cls,
+            description=description,
+            allowed_contexts=allowed_contexts,
+            allowed_installs=allowed_installs,
+            **options,
+        )
 
         self.settings = Settings()  # pyright: ignore[reportCallIssue]
 
