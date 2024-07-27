@@ -13,6 +13,7 @@ async def main() -> None:
         await bot.connect_to_database()
         await bot.start(bot.settings.discord_bot_token)
         await bot.close_database_connection()
+        await bot.close()
 
 
 if __name__ == "__main__":
@@ -37,5 +38,4 @@ if __name__ == "__main__":
             asyncio.get_running_loop().close()
         bot.logger.warning("Keyboard Interrupt")
         print("Bot Stopped")
-        bot.close()
         sys.exit()
