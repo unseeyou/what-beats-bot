@@ -31,6 +31,7 @@ class GameEmbed(Embed):
 
     def _get_emoji_representation(self, string: str) -> str:
         emojis: str = self._translator.emojify(string)
+        print(emojis)
         no_text = [i for i in emojis if not i.isalnum()]
         return max(no_text, key=lambda x: no_text.count(x))  # most common emoji
 
