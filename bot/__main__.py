@@ -35,5 +35,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         with contextlib.suppress(RuntimeError):
             asyncio.get_running_loop().close()
+        bot.logger.warning("Keyboard Interrupt")
         print("Bot Stopped")
+        bot.close()
         sys.exit()

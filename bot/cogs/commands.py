@@ -37,8 +37,6 @@ class GameEmbed(Embed):
                     model="gpt-3.5-turbo",
                     messages=[{"role": "user", "content": f"what would {item} be as one emoji?"}],
                 )
-                .choices[0]
-                .message.content
                 if not i.isalnum()
             ],
         )
@@ -51,7 +49,7 @@ class GameEmbed(Embed):
             model="gpt-3.5-turbo",
             messages=[{"role": "system", "content": prompt}, {"role": "user", "content": f"{item1} or {item2}?"}],
         )
-        output: str = response.choices[0].message.content
+        output: str = str(response)
         return output
 
 
