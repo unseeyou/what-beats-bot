@@ -1,5 +1,4 @@
 import logging
-import pathlib
 import typing
 
 import aiosqlite
@@ -7,8 +6,8 @@ import discord
 from discord.ext import commands
 from rich.logging import RichHandler
 
-from bot.settings import Settings
 from bot import utils
+from bot.settings import Settings
 
 
 def configure_logging() -> None:
