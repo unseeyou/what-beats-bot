@@ -11,7 +11,7 @@ from bot.settings import Settings
 
 
 def configure_logging() -> None:
-    file_handler = logging.FileHandler("zz.log", encoding="utf-8")
+    file_handler = logging.FileHandler("botcmds.log", encoding="utf-8")
     file_formatter = logging.Formatter(
         "%(asctime)s:%(levelname)s:%(name)s: %(message)s",
         "%Y-%m-%d:%H:%M:%S",
