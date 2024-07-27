@@ -17,6 +17,7 @@ dependencies = [
     "emoji-translate>=0.1.1",
     "curl-cffi>=0.7.1",
     "regex>=2024.7.24",
+    "spacy>=3.7.5",
 ]
 description = "Default template for PDM package"
 readme = "README.md"
