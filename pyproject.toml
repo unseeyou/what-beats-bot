@@ -101,5 +101,3 @@ addopts = "-ra -q"
 python_files = "test_*.py"
 testpaths = ["tests"]
 pythonpath = ["bot"]
-
-
