@@ -1,5 +1,5 @@
 [project]
-name = "skeleton-bot-advanced"
+name = "whatBeatsRockBot"
 authors = [
     { name = "unseeyou", email = "unseeyoubestmod@gmail.com" },
 ]
@@ -101,5 +101,3 @@ addopts = "-ra -q"
 python_files = "test_*.py"
 testpaths = ["tests"]
 pythonpath = ["bot"]
-
-
