@@ -7,8 +7,8 @@ from bot.bot import Bot
 
 
 async def main() -> None:
-    await bot.load_extensions("bot/cogs")
     async with bot:
+        await bot.load_extensions("bot/cogs")
         await bot.connect_to_database()
         await bot.start(bot.settings.discord_bot_token)
         await bot.close_database_connection()
