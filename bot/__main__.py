@@ -7,8 +7,17 @@ from bot.bot import Bot
 
 
 async def main() -> None:
+    await bot.load_extensions("bot/cogs")
+    async with bot:
+        await bot.connect_to_database()
+        await bot.start(bot.settings.discord_bot_token)
+        await bot.close_database_connection()
+
+
+if __name__ == "__main__":
     intents = discord.Intents.default()
     intents.message_content = True
+    intents.members = True
     bot = Bot(
         command_prefix="p!",
         intents=intents,
@@ -20,13 +29,6 @@ async def main() -> None:
             url="https://whatbeatsrock.com",
         ),
     )
-    async with bot:
-        await bot.connect_to_database()
-        await bot.start(bot.settings.discord_bot_token)
-        await bot.close_database_connection()
-
-
-if __name__ == "__main__":
     try:
         asyncio.run(main())
     except KeyboardInterrupt:

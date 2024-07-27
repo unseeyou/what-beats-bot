@@ -62,7 +62,6 @@ class Bot(commands.Bot):
             await self.tree.sync(guild=None)
 
     async def connect_to_database(self) -> None:
-        await self.load_extensions("bot/cogs")
         self.database_connection = await aiosqlite.connect(self.settings.database_path)
 
     async def close_database_connection(self) -> None:
