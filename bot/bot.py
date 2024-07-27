@@ -57,9 +57,8 @@ class Bot(commands.Bot):
 
         self.database_connection: aiosqlite.Connection | None = None
 
-        self.load_extensions("bot/cogs")
-
     async def connect_to_database(self) -> None:
+        await self.load_extensions("bot/cogs")
         self.database_connection = await aiosqlite.connect(self.settings.database_path)
 
     async def close_database_connection(self) -> None:

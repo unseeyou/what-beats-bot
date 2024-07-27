@@ -16,13 +16,6 @@ async def main() -> None:
             type=discord.ActivityType.playing,
             name="whatbeatsrock.com",
             url="https://whatbeatsrock.com",
-            buttons=[
-                discord.ui.Button(
-                    label="Check out the website",
-                    url="https://whatbeatsrock.com",
-                    style=discord.ButtonStyle.url,
-                ),
-            ],
         ),
     )
     await bot.connect_to_database()
@@ -31,4 +24,7 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Bot Stopped")
