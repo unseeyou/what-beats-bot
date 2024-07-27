@@ -37,7 +37,7 @@ class GameEmbed(Embed):
                     model="gpt-3.5-turbo",
                     messages=[{"role": "user", "content": f"what would {item} be as one emoji?"}],
                 )
-                if not i.isalnum()
+                if not i.isalnum() and i not in ".,/?;:[]{}!@#$%^&*()-=_+`~"
             ],
         )
 
