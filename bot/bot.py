@@ -8,6 +8,7 @@ from discord.ext import commands
 from rich.logging import RichHandler
 
 from bot.settings import Settings
+from bot import utils
 
 
 def configure_logging() -> None:
@@ -47,5 +48,5 @@ class Bot(commands.Bot):
             await self.database_connection.close()
 
     async def load_extensions(self, path: str) -> None:
-        for file in pathlib.Path(path).glob("*.py"):
+        for file in utils.search_directory(path):
             await self.load_extension(file.stem)
