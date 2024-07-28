@@ -17,7 +17,7 @@ class Settings(BaseSettings):
         discord_bot_token: The Discord bot token taken from the developer portal.
     """
 
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="UNS_")
+    model_config = SettingsConfigDict(env_file=".env", env_prefix="WBR_")
 
     discord_bot_token: str
-    database_path: str = "database.db"
+    database_path: str = "game.db"

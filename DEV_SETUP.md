@@ -3,7 +3,8 @@
 It should go without saying, you need to clone the repo from github to your machine.
 
 ```
-git clone https://github.com/unseeyou/...
+git clone https://github.com/unseeyou/what-beats-bot
+
 ```
 
 <!--- change later if "all" instead of "most" --->
