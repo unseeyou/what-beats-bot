@@ -40,17 +40,6 @@ class GameEmbed(Embed):
             ],
         )
 
-    def determine_winner(self, item1: str, item2: str) -> str:
-        prompt = """You are to determine if item A would beat item B. These items will be supplied by the user.
-        Provide your answer in the following format: ```{item1} beats/loses to {item2}!\n[reason](emoji1, emoji2)```
-        where emoji1 and emoji2 are emojis that represent the items respectively."""
-        response = g4f.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "system", "content": prompt}, {"role": "user", "content": f"{item1} or {item2}?"}],
-        )
-        output: str = str(response)
-        return output
-
 
 class InputModal(ui.Modal):
     def __init__(self, item: str) -> None:
@@ -85,6 +74,7 @@ class GameView(ui.View):
     def __init__(self, state: Literal["ask", "lose", "explain"], item: str) -> None:
         super().__init__()
         self._state = state
+        self.prev_item = item
         self.item = item
         match self._state:
             case "ask":
@@ -94,3 +84,23 @@ class GameView(ui.View):
                 self.clear_items()
             case "explain":
                 self.clear_items()
+                winner = self.determine_winner()
+                print(winner)
+
+    def update_item(self, item: str) -> None:
+        self.prev_item = self.item
+        self.item = item
+
+    def determine_winner(self) -> str:
+        prompt = """You are to determine if item A would beat item B. These items will be supplied by the user.
+        Provide your answer in the following format: ```{item1} beats/loses to {item2}!\n[reason](emoji1, emoji2)```
+        where emoji1 and emoji2 are emojis that represent the items respectively."""
+        response = g4f.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": f"{self.item} or {self.prev_item}?"},
+            ],
+        )
+        output: str = str(response)
+        return output
